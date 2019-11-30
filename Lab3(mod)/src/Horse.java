@@ -8,18 +8,12 @@ public class Horse extends Animal implements Noise, Grammar, Coordinates, Move
     }
 
     @Override
-    public String toString() { return " (" + "numerical value height: "
-            + "x:" + getX() +" "+ "y: " + getY() +" "+ getHeight() + "m" + ") "; }
-
-
-    @Override
     public String goTo(Places place)
     {
         setX(place.getX());
         setY(place.getY());
         setHeight(place.getHeight());
-        return "go to " + place.getPosition().getName() + " (Coordinates: " +
-                "x: " + getX() +", "+ " y: " + getY() +", "+ " height: " + getHeight() + ")";
+        return "go to " + place.getPosition().getName() +" ("+ toString() +")";
     }
 
     @Override

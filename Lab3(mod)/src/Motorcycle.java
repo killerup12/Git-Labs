@@ -6,18 +6,12 @@ public class Motorcycle extends Transport implements Noise, Move, Grammar, Coord
     }
 
     @Override
-    public String toString() { return " (" + "numerical value height: "
-            + "x:" + getX() +" "+ "y: " + getY() +" "+ getHeight() + "m" + ") "; }
-
-
-    @Override
     public String goTo(Places position)
     {
         setX(position.getX());
         setY(position.getY());
         setHeight(position.getHeight());
-        return "rode to " + getPosition().getName() + " (Coordinates: " +
-                "x: " + getX() +", "+ " y: " + getY() +", "+ " height: " + getHeight() + ")";
+        return "rode to " + getPosition().getName() +" ("+ toString() + ")";
     }
 
     @Override

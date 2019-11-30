@@ -52,6 +52,8 @@ public class Main
                 +", "+ motorcycle.pronoun() +" "+ motorcycle.goTo(street2));
         System.out.print(horse.getName() +" "+ horse.prepositions() +" making: "+ horse.makeASound() +", \n");
         System.out.print(cart.getName() +" "+ cart.prepositions() +" making: "+ cart.makeASound());
+        System.out.print("\n");
+        System.out.print(motorcycle.toString());
 
 
 

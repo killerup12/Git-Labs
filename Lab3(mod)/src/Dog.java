@@ -8,10 +8,6 @@ public class Dog extends Animal implements Noise, Grammar, Coordinates
     }
 
     @Override
-    public String toString() { return " (" + "numerical value height: "
-            + "x:" + getX() +" "+ "y: " + getY() +" "+ getHeight() + "m" + ") "; }
-
-    @Override
     public String pronoun()
     {
         if (getGender().equals("animal")) return "it";
@@ -31,8 +27,7 @@ public class Dog extends Animal implements Noise, Grammar, Coordinates
         setX(place.getX());
         setY(place.getY());
         setHeight(place.getHeight());
-        return "went to " + place.getPosition().getName() + " (Coordinates: " +
-                "x: " + getX() +", "+ " y: " + getY() +", "+ " height: " + getHeight() + ")";
+        return "went to " + place.getPosition().getName() + " ("+ toString() +")";
     }
 
     @Override

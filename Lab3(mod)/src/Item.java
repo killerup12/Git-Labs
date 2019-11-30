@@ -10,12 +10,6 @@ public class Item extends Object implements Smell, Grammar
     }
 
     @Override
-    public String toString() { return " (" + "numerical value height: "
-            + "x:" + getX() +" "+ "y: " + getY() +" "+ getHeight() + "m" + ") "; }
-
-
-
-    @Override
     public String pronoun()    //+
     {
         if (getGender().equals("thing")) return "it";

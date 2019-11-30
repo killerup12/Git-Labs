@@ -6,11 +6,6 @@ public class BookPers extends Human implements Speak, Actions, Grammar, Coordina
         super (name, gender, mood, position);
     }
 
-
-    @Override
-    public String toString() { return "numerical value height: " + getHeight() + "m"; }
-
-
     @Override
     public String sayOk(int degreeOfAgreement) //+
     {
@@ -58,8 +53,7 @@ public class BookPers extends Human implements Speak, Actions, Grammar, Coordina
             setY(place.getY());
             setHeight(place.getHeight());
             setPosition(place);
-            return "went to " + place.getName() + " (Coordinates: " +
-                    "x: " + getX() +", "+ " y: " + getY() +", "+ " height: " + getHeight() + ")";
+            return "went to " + place.getName() +" ("+ toString() +")";
         }
 
         @Override

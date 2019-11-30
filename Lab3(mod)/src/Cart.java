@@ -5,13 +5,6 @@ public class Cart extends Transport implements Grammar, Noise
     }
 
     @Override
-    public String toString() {
-        return " (" + "numerical value height: "
-                + "x:" + getX() + " " + "y: " + getY() + " " + getHeight() + "m" + ") ";
-    }
-
-
-    @Override
     public String pronoun() { return "it"; }
 
     @Override

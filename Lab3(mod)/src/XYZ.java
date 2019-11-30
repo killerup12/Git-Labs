@@ -13,4 +13,8 @@ abstract class XYZ
     public void setY(int y) { this.y = y; }
     public Places getPosition() { return position; }
     public void setPosition(Places position) { this.position = position; }
+
+    @Override
+    public String toString() { return "Coordinates: " +
+            "x: " + getX() +", "+ " y: " + getY() +", "+ " height: " + getHeight(); }
 }
