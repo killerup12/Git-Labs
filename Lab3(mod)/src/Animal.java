@@ -9,6 +9,7 @@ abstract class Animal extends XYZ
     public String getGender() { return gender; }
     public String getColour() { return colour; }
     public String getMood() { if (mood) return "good"; else return "wicked"; }
+    protected void setMood(boolean mood) { this.mood = mood; }
 
     Animal (String name, String gender, String colour, boolean mood,
             Places position)
@@ -22,17 +23,6 @@ abstract class Animal extends XYZ
         setY(y);
         setHeight(height);
 
-    }
-
-    @Override
-    public boolean equals(java.lang.Object other)
-    {
-        if (other == null) return false;
-         if(!super.equals(other)) return false;
-          if (this == other) return true;
-           if(this.getClass() != other.getClass()) return false;
-          Animal otherObj = (Animal) other;
-         return this.getHeight() == otherObj.getHeight();
     }
 
     @Override

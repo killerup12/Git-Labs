@@ -26,7 +26,7 @@ abstract class Object extends XYZ
         if (degreeOfIllumination == 3) return "distinguishable";
         else return "very noticeable";
     }
-    public void setDegreeOfIllumination(int degreeOfIllumination) {this.degreeOfIllumination = degreeOfIllumination;}
+    protected void setDegreeOfIllumination(int degreeOfIllumination) {this.degreeOfIllumination = degreeOfIllumination;}
     public String getDegreeOfPurity()
     {
         if (degreeOfPurity == 0) return "very dirty";
@@ -34,7 +34,7 @@ abstract class Object extends XYZ
         if (degreeOfPurity == 2) return "little dirty";
         else return "clear";
     }
-    public void setDegreeOfPurity(int degreeOfPurity)
+    protected void setDegreeOfPurity(int degreeOfPurity)
     {
         this.degreeOfPurity = degreeOfPurity;
     }
@@ -52,17 +52,6 @@ abstract class Object extends XYZ
         setX(x);
         setY(y);
         setHeight(height);
-    }
-
-    @Override
-    public boolean equals(java.lang.Object other)
-    {
-        if (other == null) return false;
-        if(!super.equals(other)) return false;
-        if (this == other) return true;
-        if(this.getClass() != other.getClass()) return false;
-        Object otherObj = (Object) other;
-        return this.getHeight() == otherObj.getHeight();
     }
 
     @Override

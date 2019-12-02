@@ -23,17 +23,6 @@ abstract class Transport extends XYZ
     }
 
     @Override
-    public boolean equals(java.lang.Object other)
-    {
-        if (other == null) return false;
-        if(!super.equals(other)) return false;
-        if (this == other) return true;
-        if(this.getClass() != other.getClass()) return false;
-        Animal otherObj = (Animal) other;
-        return this.getHeight() == otherObj.getHeight();
-    }
-
-    @Override
     public int hashCode()
     {
         return 13+115*getHeight()+234*name.length();

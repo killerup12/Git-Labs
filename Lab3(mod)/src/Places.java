@@ -11,4 +11,7 @@ abstract class Places extends XYZ
     }
 
     public String getName() { return name; }
+
+    @Override
+    public int hashCode() { return name.length()*115+getX()+getY()*getHeight(); }
 }
