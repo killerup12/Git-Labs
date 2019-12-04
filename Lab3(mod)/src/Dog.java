@@ -1,5 +1,5 @@
 
-public class Dog extends Animal implements Noise, Grammar, Coordinates
+public class Dog extends Animal implements Noise, Grammar, MoveAble
 {
     public Dog (String name, String gender, String colour, boolean mood,
                 Places position)

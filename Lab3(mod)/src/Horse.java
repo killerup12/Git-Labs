@@ -1,4 +1,4 @@
-public class Horse extends Animal implements Noise, Grammar, Coordinates, Move
+public class Horse extends Animal implements Noise, Grammar, MoveAble, RePlace
 {
 
     Horse (String name, String gender, String colour, boolean mood,

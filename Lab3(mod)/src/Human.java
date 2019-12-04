@@ -3,7 +3,7 @@ abstract class Human extends XYZ
     private String name;
     private String gender;
     private boolean mood;
-    private String handCondition = "nothing";
+    private String handCondition;
 
     public String getName() { return name; }
     public String getGender() { return gender; }
@@ -20,9 +20,9 @@ abstract class Human extends XYZ
 
 
 
-    Human (String name, String gender, boolean mood,
-           Places position)
+    Human (String name, String gender, boolean mood, Places position)
     {
+        super (getTimesOfDay());
         this.name = name;
         this.gender = gender;
         this.mood = mood;

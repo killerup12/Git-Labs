@@ -1,5 +1,5 @@
 
-public class BookPers extends Human implements Speak, Actions, Grammar, Coordinates
+public class BookPers extends Human implements Speak, Actions, Grammar, MoveAble
 {
     public BookPers(String name, String gender, boolean mood, Places position)
     {
@@ -23,12 +23,6 @@ public class BookPers extends Human implements Speak, Actions, Grammar, Coordina
 
         else return "*dialogue*";
     }
-
-    @Override
-    public String laugh() { setMood(true); return "*laugh*"; }  //+
-
-    @Override
-    public String cry() { setMood(false); return "*crying*"; }  //+
 
         @Override
         public String wash(Item unit)

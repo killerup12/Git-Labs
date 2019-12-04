@@ -13,6 +13,7 @@ abstract class Transport extends XYZ
 
     Transport (String name, String colour, int speed, Places position)
     {
+        super(getTimesOfDay());
         this.name = name;
         this.colour = colour;
         this.speed = speed;

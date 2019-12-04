@@ -2,7 +2,9 @@ public class Main
 {
     public static void main(String[] args)
     {
+        DayStatus dayStatus = new DayStatus(TimesOfDay.EVENING);
         Haven heaven = new Haven("heaven", 0, 0, 30000);
+        Roofs startFlatsRoof = new Roofs("start Flat's Roof", 0, 0, 15);
         Flats startFlat = new Flats("start flat", 0, 0, 9);
         Flats anotherFlat1 = new Flats("unknown flat 1", -5, 0, 10);
         Flats anotherFlat2 = new Flats("unknown flat 2", -3, 2, 10);
@@ -11,13 +13,12 @@ public class Main
         Parks park = new Parks("park", 12, 10, 0);
         Parks tree = new Parks("tree", 12, 10, 5);
         Item trees = new Item("trees", "things", "brawn", 1, 3, 1, park);
-        Item sky = new Item("sky", "thing", "blue", 0, 4, 0, heaven);
-        Item houses = new Item("houses", "things", null, 0, 1, 0, street);
+        Item sky = new Item("sky", "thing", "blue", 0, 10, 0, heaven);
+        Item houses = new Item("houses", "things", null, 0, 3, 0, street);
         Item treeLeaves = new Item("tree leaves", "things", "green", 3, 3, 0, tree);
         Item dishes = new Item("dishes", "thing", "white", 2, 3, 3, anotherFlat2);
-        Motorcycle motorcycle = new Motorcycle("motorcycle", "black", 60, street);
+        Motorcycle motorcycle = new Motorcycle("motorcycle", "black",60, street);
         Cart cart = new Cart("cart", "brawn", 5, street);
-        Roofs startFlatsRoof = new Roofs("start Flat's Roof", 0, 0, 15);
         BookPers malish = new BookPers("Malish", "male", true, startFlat);
         BookPers karlson = new BookPers("Karlson", "male", true, startFlat);
         BookPers unknownHuman1 = new BookPers("unknown human 1", "male", true, anotherFlat1);
@@ -52,10 +53,5 @@ public class Main
                 +", "+ motorcycle.pronoun() +" "+ motorcycle.goTo(street2));
         System.out.print(horse.getName() +" "+ horse.prepositions() +" making: "+ horse.makeASound() +", \n");
         System.out.print(cart.getName() +" "+ cart.prepositions() +" making: "+ cart.makeASound());
-        System.out.print("\n");
-        System.out.print(motorcycle.toString());
-
-
-
     }
 }

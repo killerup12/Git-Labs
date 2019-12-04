@@ -14,6 +14,7 @@ abstract class Animal extends XYZ
     Animal (String name, String gender, String colour, boolean mood,
             Places position)
     {
+        super(getTimesOfDay());
         this.name = name;
         this.gender = gender;
         this.colour = colour;

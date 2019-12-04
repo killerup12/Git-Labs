@@ -1,4 +1,4 @@
-public class Motorcycle extends Transport implements Noise, Move, Grammar, Coordinates
+public class Motorcycle extends Transport implements Noise, RePlace, Grammar, MoveAble
 {
     Motorcycle (String name, String colour, int speed, Places position)
     {

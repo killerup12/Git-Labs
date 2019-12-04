@@ -4,6 +4,7 @@ abstract class Places extends XYZ
 
     Places (String name, int x, int y, int height)
     {
+        super(getTimesOfDay());
         this.name = name;
         setX(x);
         setY(y);

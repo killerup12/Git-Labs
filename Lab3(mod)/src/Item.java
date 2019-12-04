@@ -1,6 +1,7 @@
 public class Item extends Object implements Smell, Grammar
 {
 
+
     public Item(String name, String gender, String colour, int odorConcentration,
                 int degreeOfIllumination, int degreeOfPurity, Places position)
     {

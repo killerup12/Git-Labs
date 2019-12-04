@@ -1,9 +1,11 @@
-abstract class XYZ
+abstract class XYZ extends DayStatus
 {
     protected Places position;
     protected int height;
     protected int x;
     protected int y;
+
+    public XYZ(TimesOfDay timesOfDay) { super(timesOfDay); }
 
     protected int getHeight() { return height; }
     protected void setHeight(int height) { this.height = height; }
