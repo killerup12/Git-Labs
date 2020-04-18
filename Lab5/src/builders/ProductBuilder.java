@@ -5,6 +5,13 @@ import shop_units.Product;
 import tools.TextReader;
 
 public class ProductBuilder {
+    /**
+     * Строитель, что реализует создвние и
+     * ввод пользователем значений для полей
+     * продукта
+     * @return Продукт с заполенными полями,
+     * учитывая требованя по ТЗ
+     */
      static public Product buildProduct () {
         Product product = new Product();
         assignId(product);
@@ -12,14 +19,23 @@ public class ProductBuilder {
         return product;
     }
 
-    private static Integer antiRepetitionId = 1;
-
-   public static Product updateProduct (Integer id) {
+    /**
+     * Метод, позволяющий обновить все
+     * значения полей продукта, при это
+     * не заменив ID
+     * @param id ID, что будет перенесен
+     *           в новый продукт
+     * @return Продукт с заполенными полями,
+     * учитывая требованя по ТЗ
+     */
+    public static Product updateProduct (Integer id) {
         Product product = new Product();
         product.setId(id);
         initProduct(product);
         return product;
     }
+
+    private static Integer antiRepetitionId = 1;
 
     private static void initProduct (Product product) {
         assignName(product);

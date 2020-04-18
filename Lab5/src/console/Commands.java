@@ -1,7 +1,6 @@
 package console;
 
 import builders.ProductBuilder;
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import shop_units.Product;
 import shop_units.Storage;
 

@@ -3,8 +3,15 @@ package builders;
 import tools.Coordinates;
 import tools.TextReader;
 
-public class CoordinatesBuilder extends Coordinates{
-    public static Coordinates buildCoordinates() {
+class CoordinatesBuilder extends Coordinates{
+    /**
+     * Строитель, что реализует создвние и
+     * ввод пользователем значений для полей
+     * координат
+     * @return Продукт с заполенными полями,
+     * учитывая требованя по ТЗ
+     */
+    static Coordinates buildCoordinates() {
         Coordinates coordinates = new Coordinates();
         assignX(coordinates);
         assignY(coordinates);

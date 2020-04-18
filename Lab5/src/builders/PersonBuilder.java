@@ -6,6 +6,13 @@ import shop_units.Storage;
 import tools.TextReader;
 
 public class PersonBuilder {
+    /**
+     * Строитель, что реализует создвние и
+     * ввод пользователем значений для полей
+     * персонажа
+     * @return Продукт с заполенными полями,
+     * учитывая требованя по ТЗ
+     */
     static public Person buildPerson() {
         Person person = new Person();
         assignName(person);

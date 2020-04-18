@@ -3,7 +3,10 @@ package console;
 import tools.TextReader;
 
 public class CommandListener {
-
+    /**
+     * Метод, который считывает консольные команды
+     * в бесконечном цыкле,а так же воплощает их в жизнь
+     */
     public void startListener(){
         String command;
 
