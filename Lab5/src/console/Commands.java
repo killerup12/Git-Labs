@@ -123,9 +123,8 @@ class Commands {
      * Считать и исполнить скрипт из указанного файла.
      * В скрипте содержатся команды в таком же виде,
      * в котором их вводит пользователь в интерактивном режиме
-     * @param file Путь к файлу
      */
-    static void executeScript(File file) {
+    static void executeScript() {
         //todo
     }
 

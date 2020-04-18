@@ -13,23 +13,56 @@ public class CommandListener {
         while (true){
             command = TextReader.readText();
 
-            if (readCommand(command).equals("help")) Commands.help();
-            else if (readCommand(command).equals("info")) Commands.info();
-            else if (readCommand(command).equals("show")) Commands.show();
-            else if (readCommand(command).equals("add")) Commands.add();
-            else if (readCommand(command).equals("update")) Commands.updateId(integerCheck(readArgument(command)));
-            else if (readCommand(command).equals("remove_by_id")) Commands.removeById(integerCheck(readArgument(command)));
-            else if (readCommand(command).equals("clear")) Commands.clear();
-            //else if (readCommand(command).equals("save")) Commands.save();
-            //else if (readCommand(command).equals("execute_script")) Commands.executeScript();
-            else if (readCommand(command).equals("exit")) Commands.exit();
-            //else if (readCommand(command).equals("add_if_max")) Commands.addIfMax();
-            //else if (readCommand(command).equals("add_if_min")) Commands.addIfMin();
-            //else if (readCommand(command).equals("remove_lower")) Commands.removeLower();
-            else if (readCommand(command).equals("min_by_manufacture_cost")) Commands.minByManufactureCost();
-            else if (readCommand(command).equals("count_greater_than_price")) Commands.countGreaterThanPrice(longCheck(readArgument(command)));
-            else if (readCommand(command).equals("print_field_descending_owner")) Commands.printFieldDescendingOwner();
-            else System.out.println("You entered wrong command!");
+            switch (readCommand(command)) {
+                case "help":
+                    Commands.help();
+                    continue;
+                case "info":
+                    Commands.info();
+                    continue;
+                case "show":
+                    Commands.show();
+                    continue;
+                case "add":
+                    Commands.add();
+                    continue;
+                case "update":
+                    Commands.updateId(integerCheck(readArgument(command)));
+                    continue;
+                case "remove_by_id":
+                    Commands.removeById(integerCheck(readArgument(command)));
+                case "clear":
+                    Commands.clear();
+                    continue;
+                case "save":
+                    Commands.save();
+                    continue;
+                case "execute_script":
+                    Commands.executeScript();
+                    continue;
+                case "exit":
+                    Commands.exit();
+                    continue;
+                case "add_if_max":
+                    Commands.addIfMax();
+                    continue;
+                case "add_if_min":
+                    Commands.addIfMin();
+                    continue;
+                case "remove_lower":
+                    Commands.removeLower();
+                    continue;
+                case "min_by_manufacture_cost":
+                    Commands.minByManufactureCost();
+                    continue;
+                case "count_greater_than_price":
+                    Commands.countGreaterThanPrice(longCheck(readArgument(command)));
+                    continue;
+                case "print_field_descending_owner":
+                    Commands.printFieldDescendingOwner();
+                    continue;
+            }
+            System.out.println("You entered wrong command!");
         }
         //todo реализовать оставшиеся команды через switch
     }
