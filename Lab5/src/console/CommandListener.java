@@ -12,6 +12,10 @@ public class CommandListener {
 
         while (true){
             command = TextReader.readText();
+            if (command == null) {
+                System.out.println("You didn\'t enter a command!");
+                continue;
+            }
 
             switch (readCommand(command)) {
                 case "help":
@@ -64,7 +68,6 @@ public class CommandListener {
             }
             System.out.println("You entered wrong command!");
         }
-        //todo реализовать оставшиеся команды через switch
     }
 
     private String readCommand(String command) {

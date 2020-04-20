@@ -16,12 +16,15 @@ public class TextReader {
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
     public static String readText() {
-        String var;
+        String text;
         while (true) {
             try {
                 System.out.print(">");
-                var = scanner.nextLine();
-                return var;
+                text = scanner.nextLine();
+                if (text.equals("")) {
+                    return null;
+                }
+                return text;
             } catch (NoSuchElementException e) {
                 System.out.println();
                 System.out.println("Гопники из Купчино снова попыались сломать мою прогу!");
@@ -36,9 +39,14 @@ public class TextReader {
      * @return всегда возвращает тольео данные типа Integer
      */
     public static Integer readIntegerFromConsole() {
+        String number;
         while (true) {
+            number = readText();
+            if (number == null) {
+                return null;
+            }
             try {
-                return Integer.valueOf(readText());
+                return Integer.valueOf(number);
             } catch (NumberFormatException nfe) {
                 System.out.println("This is not an integer!");
                 System.out.println("Please, enter a integer:");
@@ -52,9 +60,14 @@ public class TextReader {
      * @return всегда возвращает тольео данные типа Long
      */
     public static Long readLongFromConsole() {
+        String number;
         while (true) {
+            number = readText();
+            if (number == null) {
+                return null;
+            }
             try {
-                return Long.valueOf(readText());
+                return Long.valueOf(number);
             } catch (NumberFormatException nfe) {
                 System.out.println("This is not an long!");
                 System.out.println("Please, enter a long:");
@@ -68,9 +81,14 @@ public class TextReader {
      * @return всегда возвращает тольео данные типа Double
      */
     public static Double readDoubleFromConsole() {
+        String number;
         while (true) {
+            number = readText();
+            if (number == null) {
+                return null;
+            }
             try {
-                return Double.valueOf(readText());
+                return Double.valueOf(number);
             } catch (NumberFormatException e) {
                 System.out.println("This is not an double!");
                 System.out.println("Please, enter a double:");
@@ -84,9 +102,14 @@ public class TextReader {
      * @return всегда возвращает тольео данные типа Float
      */
     public static Float readFloatFromConsole() {
+        String number;
         while (true) {
+            number = readText();
+            if (number == null) {
+                return null;
+            }
             try {
-                return Float.valueOf(readText());
+                return Float.valueOf(number);
             } catch (NumberFormatException e) {
                 System.out.println("This is not an float!");
                 System.out.println("Please, enter a float:");
@@ -100,9 +123,15 @@ public class TextReader {
      * @return всегда возвращает тольео данные типа LocalDate
      */
     public static LocalDate readDate() {
+        String date;
         while (true) {
+            date = readText();
+            if (date == null) {
+                System.out.println("A date cannot be null!");
+                continue;
+            }
             try {
-                return LocalDate.parse(TextReader.readText(), formatter);
+                return LocalDate.parse(date, formatter);
             } catch (DateTimeParseException e) {
                 System.out.println("Date was entered wrong!");
                 System.out.println("Please, enter another date:");
@@ -119,7 +148,9 @@ public class TextReader {
         String answer = null;
         while (true) {
             answer = readText();
-            if ((answer.equals("y")) || (answer.equals("Y"))) {
+            if (answer == null) {
+                System.out.println("Answer cannot be null!");
+            } else if ((answer.equals("y")) || (answer.equals("Y"))) {
                 return true;
             } else if ((answer.equals("n")) || (answer.equals("N"))) {
                 return false;

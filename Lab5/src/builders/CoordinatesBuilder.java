@@ -19,30 +19,34 @@ class CoordinatesBuilder extends Coordinates{
     }
 
     private static void assignX(Coordinates coordinates) {
-        long var;
+        Long number;
         do {
             System.out.println("Please, enter a coordinate X (> -622):");
-            var = TextReader.readLongFromConsole();
-            if (var > -622) {
-                coordinates.setX(var);
+            number = TextReader.readLongFromConsole();
+            if (number == null) {
+                System.out.println("A coordinate cannot be null!");
+            } else if (number > -622) {
+                coordinates.setX(number);
             } else {
                 System.out.println("The coordinate cannot be less -622!");
             }
-        } while (var <= -622);
+        } while ((number == null) || (number <= -622));
         System.out.println();
     }
 
     private static void assignY(Coordinates coordinates) {
-        long var;
+        Long number;
         do {
             System.out.println("Please, enter a coordinate Y (<= 625):");
-            var = TextReader.readLongFromConsole();
-            if (var <= 625) {
-                coordinates.setY(var);
+            number = TextReader.readLongFromConsole();
+            if (number == null) {
+                System.out.println("A coordinate cannot be null!");
+            } else if (number <= 625) {
+                coordinates.setY(number);
             } else {
                 System.out.println("The coordinate cannot be more ерут 625!");
             }
-        }while (var > 625);
+        }while ((number == null) || (number > 625));
         System.out.println();
     }
 }

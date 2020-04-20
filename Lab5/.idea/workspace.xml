@@ -27,6 +27,9 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
@@ -83,7 +86,7 @@
       <workItem from="1586213337782" duration="44109000" />
       <workItem from="1586726888360" duration="51965000" />
       <workItem from="1587168363324" duration="6731000" />
-      <workItem from="1587180671009" duration="19109000" />
+      <workItem from="1587180671009" duration="27884000" />
     </task>
     <servers />
   </component>

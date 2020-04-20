@@ -79,6 +79,11 @@ public class Storage {
         storage.add(product);
     }
 
+    /**
+     * Метод позволяет в приемлемом виде вывести данные
+     * продукта в консоль
+     * @param product продукт, поля которого будут выведены
+     */
     public static void showProductInConsole(Product product) {
         System.out.println("ID: "+ product.getId());
         System.out.println("Name: "+ product.getName());

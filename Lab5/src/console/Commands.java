@@ -4,8 +4,6 @@ import builders.ProductBuilder;
 import shop_units.Product;
 import shop_units.Storage;
 
-import java.io.File;
-
 /**
  * В этом классе содержатся все кончольные команды.
  */
@@ -78,8 +76,7 @@ class Commands {
         if (id == null) {
             System.out.println("ID has been entered wrong!");
             return;
-        }
-        if (Storage.searchProductById(id) == null) {
+        } else if (Storage.searchProductById(id) == null) {
             System.out.println("There is no element with such id!");
             return;
         }
@@ -94,7 +91,10 @@ class Commands {
      *           происходить поиск
      */
     static void removeById(Integer id) {
-        if (Storage.searchProductById(id) == null) {
+        if (id == null) {
+            System.out.println("ID has been entered wrong!");
+            return;
+        } else if (Storage.searchProductById(id) == null) {
             System.out.println("There is no element with such id!");
             return;
         }
@@ -116,6 +116,7 @@ class Commands {
      * Сохранить коллекцию в файл
      */
     static void save() {
+
         //todo
     }
 
@@ -132,6 +133,7 @@ class Commands {
      * Завершить программу (без сохранения в файл)
      */
     static void exit() {
+        System.out.println("Exiting the application...");
         System.exit(0);
     }
 
@@ -188,6 +190,10 @@ class Commands {
      *              другие продукты
      */
     static void countGreaterThanPrice(Long price) {
+        if (price == null) {
+            System.out.println("Such a price cannot exist!");
+            return;
+        }
         int numberOfProductsDisplayed = 0;
         for (Product product : Storage.getStorage()) {
             if (product.getPrice() == null) {
@@ -207,6 +213,6 @@ class Commands {
      * в порядке убывания
      */
     static void printFieldDescendingOwner() {
-        //todo
+        //todoфф
     }
 }
