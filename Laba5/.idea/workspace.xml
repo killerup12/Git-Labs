@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="918e83c7-a349-4240-847a-3578451250b5" name="Default Changelist" comment="" />
+    <list default="true" id="e9aacbe2-77bd-4036-a27d-ad42b27b43e8" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectId" id="1aAJ2OCTYjAQQkOYRe5bg2KtnwW" />
+  <component name="ProjectId" id="1aoZ7017O5Ml5GjZPUs66ZiUDf9" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -28,19 +20,14 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="console" />
+      <recent name="" />
     </key>
-  </component>
-  <component name="RunAnythingCache">
-    <option name="myCommands">
-      <command value="help" />
-    </option>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -55,12 +42,9 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="Lab5" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
+      <module name="Laba5" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -76,17 +60,13 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="918e83c7-a349-4240-847a-3578451250b5" name="Default Changelist" comment="" />
-      <created>1586172256416</created>
+      <changelist id="e9aacbe2-77bd-4036-a27d-ad42b27b43e8" name="Default Changelist" comment="" />
+      <created>1587403736249</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1586172256416</updated>
-      <workItem from="1586172258627" duration="1918000" />
-      <workItem from="1586201278691" duration="25000" />
-      <workItem from="1586213337782" duration="44109000" />
-      <workItem from="1586726888360" duration="51965000" />
-      <workItem from="1587168363324" duration="6731000" />
-      <workItem from="1587180671009" duration="27884000" />
+      <updated>1587403736249</updated>
+      <workItem from="1587403743399" duration="5690000" />
+      <workItem from="1587445703564" duration="4924000" />
     </task>
     <servers />
   </component>

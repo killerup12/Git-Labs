@@ -1,8 +1,12 @@
 package console;
 
 import builders.ProductBuilder;
+import com.alibaba.fastjson.JSONArray;
 import shop_units.Product;
 import shop_units.Storage;
+import tools.FileWorker;
+
+import java.io.IOException;
 
 /**
  * В этом классе содержатся все кончольные команды.
@@ -115,8 +119,16 @@ class Commands {
     /**
      * Сохранить коллекцию в файл
      */
-    static void save() {
-
+    static void save(){
+        JSONArray jsonArray = new JSONArray();
+        for (Product product : Storage.getStorage()) {
+            jsonArray.add(product.toJSON());
+        }
+        String jsonOutput = jsonArray.toJSONString();
+        try {
+            FileWorker.write(jsonOutput);
+        } catch (IOException ignored) {
+        }
         //todo
     }
 
@@ -144,8 +156,17 @@ class Commands {
      */
     static void addIfMax() {
         Product product = ProductBuilder.buildProduct();
-
-        //todo
+        boolean success = true;
+        for (Product productInCollection : Storage.getStorage()) {
+            if (productInCollection.compareTo(product) >= 0) {
+                success = false;
+                break;
+            }
+        }
+        if (success) {
+            Storage.getStorage().add(product);
+            System.out.println("Added!");
+        }
     }
 
     /**
@@ -155,8 +176,17 @@ class Commands {
      */
     static void addIfMin() {
         Product product = ProductBuilder.buildProduct();
-
-        //todo
+        boolean success = true;
+        for (Product productInCollection : Storage.getStorage()) {
+            if (productInCollection.compareTo(product) <= 0) {
+                success = false;
+                break;
+            }
+        }
+        if (success) {
+            Storage.getStorage().add(product);
+            System.out.println("Added!");
+        }
     }
 
     /**
@@ -165,8 +195,13 @@ class Commands {
      */
     static void removeLower() {
         Product product = ProductBuilder.buildProduct();
-
-        //todo
+        for (Product products : Storage.getStorage()) {
+            if (product.compareTo(products) < 0) {
+                System.out.println("Product "+ products.getName() +" removed!");
+                Storage.getStorage().remove(product);
+            }
+        }
+        System.out.println();
     }
 
     /**
@@ -213,6 +248,8 @@ class Commands {
      * в порядке убывания
      */
     static void printFieldDescendingOwner() {
-        //todoфф
+        Storage.getStorage().stream().sorted((product1, product2) -> product2.getOwner().compareTo(product1.getOwner()))
+                .forEachOrdered(System.out::println);
+    //изучить
     }
 }

@@ -1,11 +1,12 @@
 package shop_units;
 
+import com.alibaba.fastjson.JSONObject;
 import enums.UnitOfMeasure;
 import tools.Coordinates;
 
 import java.time.ZonedDateTime;
 
-public class Product {
+public class Product implements Comparable<Product>{
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Пол не может быть nullе
@@ -21,6 +22,24 @@ public class Product {
         coordinates = new Coordinates();
         owner = new Person();
         //todo костыль. Испровить!
+    }
+
+    /**
+     * Метод, позволяющий преобразовать объект
+     * для хранения в JSON
+     * @return объект JSON
+     */
+    public JSONObject toJSON() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id", id);
+        jsonObject.put("name", name);
+        jsonObject.put("coordinate", coordinates.toJSON());
+        jsonObject.put("creationDate", creationDate);
+        jsonObject.put("price", price);
+        jsonObject.put("manufactureCost", manufactureCost);
+        jsonObject.put("unitOfMeasure", unitOfMeasure);
+        jsonObject.put("owner", owner.toJSON());
+        return jsonObject;
     }
 
     public Integer getId() {
@@ -90,5 +109,20 @@ public class Product {
 
     private void initCreationDate() {
         creationDate = java.time.ZonedDateTime.now();
+    }
+
+    //Сравнение продуктов происходит по цене
+    @Override
+    public int compareTo(Product o) {
+        if (o == null) {
+            return 1;
+        } else if ((o.price == null) && (price != null)) {
+            return 1;
+        } else if (o.price == null) {
+            return 0;
+        } else if (price == null) {
+            return -1;
+        }
+        return (int) (this.price - o.price);
     }
 }

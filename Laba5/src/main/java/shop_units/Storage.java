@@ -1,7 +1,10 @@
 package shop_units;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
+import java.util.Scanner;
 
 /**
  * Храилище, где будут содержаться коллекции.
@@ -9,9 +12,28 @@ import java.util.LinkedHashSet;
 public class Storage {
     private static LinkedHashSet<Product> storage = new LinkedHashSet<>();
     private static LocalDate initializationDate = LocalDate.now();
+    private static File collectionFile;
 
+    public static File getCollectionFile() { return collectionFile; }
+    public static void setCollectionFile(File collectionFile) { Storage.collectionFile = collectionFile; }
     public static LinkedHashSet<Product> getStorage() { return storage; }
     public static LocalDate getInitializationDate() { return initializationDate; }
+
+    /**
+     * Заполняет коллекцию данными из файла
+     * @param file файл, откуда будут брать
+     *             информацию для записи
+     * @return успешно ли проинициализирован
+     */
+    public static boolean initCollectionFromFile (File file) {
+        try {
+            Scanner scanner = new Scanner(file);
+        } catch (FileNotFoundException ignored) {
+        }
+        return false;
+        //todo
+    }
+
     /**
      * Метод производит поиск объекта по его ID.
      * @param id предпологаемый ID продукта
@@ -121,6 +143,8 @@ public class Storage {
             } else {
                 System.out.println("    Passport ID: -");
             }
+        } else {
+            System.out.println("Owner: -");
         }
     }
 }

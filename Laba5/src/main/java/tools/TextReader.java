@@ -1,5 +1,6 @@
 package tools;
 
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -31,6 +32,11 @@ public class TextReader {
                 scanner = new Scanner(System.in);
             }
         }
+    }
+
+    public static String readText(InputStream stream) {
+        return null;
+        //todo
     }
 
     /**
