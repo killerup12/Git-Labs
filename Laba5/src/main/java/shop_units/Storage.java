@@ -31,7 +31,7 @@ public class Storage {
      *             информацию для записи
      * @return успешно ли проинициализирован
      */
-    public static void initCollectionFromFile (File file) {
+    public static boolean initCollectionFromFile (File file) {
         try {
             Scanner scanner = new Scanner(file);
             Product[] arrayProduct;
@@ -42,7 +42,9 @@ public class Storage {
                     product.setOwner(null);
                 }
             }
+            return true;
         } catch (FileNotFoundException ignored) {
+            return false;
         }
         //todo
     }
