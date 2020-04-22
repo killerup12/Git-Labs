@@ -2,6 +2,7 @@ package builders;
 
 import enums.UnitOfMeasure;
 import shop_units.Product;
+import shop_units.Storage;
 import tools.TextReader;
 
 public class ProductBuilder {
@@ -56,8 +57,17 @@ public class ProductBuilder {
     }
 
     private static void assignId(Product product) {
+        boolean success = false;
+        while (!success) {
+            success = true;
+            for (Product product2 : Storage.getStorage()) {
+                if (antiRepetitionId.equals(product2.getId())) {
+                    antiRepetitionId ++;
+                    success = false;
+                }
+            }
+        }
         product.setId(antiRepetitionId);
-        antiRepetitionId += 1;
     }
 
     private static void assignName(Product product) {

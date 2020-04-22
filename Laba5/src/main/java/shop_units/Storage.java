@@ -1,8 +1,14 @@
 package shop_units;
 
+import com.alibaba.fastjson.JSONObject;
+import tools.FileWorker;
+import tools.TextReader;
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Type;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Scanner;
 
@@ -25,12 +31,19 @@ public class Storage {
      *             информацию для записи
      * @return успешно ли проинициализирован
      */
-    public static boolean initCollectionFromFile (File file) {
+    public static void initCollectionFromFile (File file) {
         try {
             Scanner scanner = new Scanner(file);
+            Product[] arrayProduct;
+            arrayProduct = JSONObject.parseObject(FileWorker.read(file), (Type) Product[].class);
+            storage.addAll(Arrays.asList(arrayProduct));
+            for (Product product : storage) {
+                if (product.getOwner().getName() == null) {
+                    product.setOwner(null);
+                }
+            }
         } catch (FileNotFoundException ignored) {
         }
-        return false;
         //todo
     }
 
@@ -47,8 +60,6 @@ public class Storage {
             }
         }
         return null;
-
-        //todo Обратить внисение на foreach!
     }
 
     /**
@@ -59,13 +70,11 @@ public class Storage {
      */
     public static Person searchOwnerByPassportId(String passportId) {
         for (Product product : storage) {
-            if (product.getOwner().getPassportID().equals(passportId)) {
+            if ((product.getOwner() != null) && (product.getOwner().getPassportID().equals(passportId))) {
                 return product.getOwner();
             }
         }
         return null;
-
-        //todo Обратить внисение на foreach!
     }
 
     /**

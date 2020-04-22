@@ -57,9 +57,9 @@ public class FileWorker {
                 file = new File(var);
                 if (isReachable(file))
                     return file;
-                System.out.print("Try entering the file name again:");
+                System.out.println("Try entering the file name again:");
             } else {
-                System.out.println("The file cannot be nameless!");
+                System.out.println("The file can not have a name!");
             }
         }
     }
@@ -72,6 +72,15 @@ public class FileWorker {
      */
     public static String read() throws FileNotFoundException {
         Scanner scanner = new Scanner(Storage.getCollectionFile());
+
+        String result = "";
+        while (scanner.hasNextLine()) {
+            result += scanner.nextLine();
+        }
+        return result;
+    }
+    public static String read(File file) throws FileNotFoundException {
+        Scanner scanner = new Scanner(file);
 
         String result = "";
         while (scanner.hasNextLine()) {

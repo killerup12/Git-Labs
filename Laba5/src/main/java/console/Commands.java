@@ -7,6 +7,7 @@ import shop_units.Storage;
 import tools.FileWorker;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * В этом классе содержатся все кончольные команды.
@@ -53,6 +54,10 @@ class Commands {
      * в строковом представлении
      * */
     static void show() {
+        if (Storage.getStorage().isEmpty()) {
+            System.out.println("Storage is empty!");
+            return;
+        }
         for (Product product : Storage.getStorage()) {
             Storage.showProductInConsole(product);
             System.out.println("-------------------------");
@@ -97,6 +102,7 @@ class Commands {
     static void removeById(Integer id) {
         if (id == null) {
             System.out.println("ID has been entered wrong!");
+            System.out.println();
             return;
         } else if (Storage.searchProductById(id) == null) {
             System.out.println("There is no element with such id!");
@@ -129,7 +135,8 @@ class Commands {
             FileWorker.write(jsonOutput);
         } catch (IOException ignored) {
         }
-        //todo
+        System.out.println("Data saved!");
+        System.out.println();
     }
 
     /**
@@ -195,11 +202,15 @@ class Commands {
      */
     static void removeLower() {
         Product product = ProductBuilder.buildProduct();
-        for (Product products : Storage.getStorage()) {
-            if (product.compareTo(products) < 0) {
-                System.out.println("Product "+ products.getName() +" removed!");
-                Storage.getStorage().remove(product);
+        ArrayList<Product> smallerProducts = new ArrayList<>();
+        for (Product productFromCollection : Storage.getStorage()) {
+            if (product.compareTo(productFromCollection) > 0) {
+                smallerProducts.add(productFromCollection);
             }
+        }
+        for (Product productFromArray : smallerProducts) {
+            System.out.println("Product \""+ productFromArray.getName() +"\" removed!");
+            Storage.getStorage().remove(productFromArray);
         }
         System.out.println();
     }
@@ -233,7 +244,7 @@ class Commands {
         for (Product product : Storage.getStorage()) {
             if (product.getPrice() == null) {
                 continue;
-            } else if (product.getPrice() < price) {
+            } else if (product.getPrice() > price) {
                 Storage.showProductInConsole(product);
                 numberOfProductsDisplayed++;
             }
@@ -241,6 +252,7 @@ class Commands {
                 System.out.println("There are no such elements whose price is more than a given!");
             }
         }
+        System.out.println();
     }
 
     /**
@@ -248,8 +260,28 @@ class Commands {
      * в порядке убывания
      */
     static void printFieldDescendingOwner() {
-        Storage.getStorage().stream().sorted((product1, product2) -> product2.getOwner().compareTo(product1.getOwner()))
-                .forEachOrdered(System.out::println);
+        ArrayList<Product> arrayProduct = new ArrayList<>();
+        for (Product product : Storage.getStorage()) {
+            if (product.getOwner() != null) {
+                arrayProduct.add(product);
+            }
+        }
+        if (arrayProduct.size() > 1) {
+             arrayProduct.stream().sorted((product1, product2) -> product2.getOwner().compareTo(product1.getOwner()))
+                    .forEachOrdered(Storage::showProductInConsole);
+            //изучить
+            System.out.println("-------------------------");
+        } else {
+            Storage.showProductInConsole(arrayProduct.get(0));
+            System.out.println("-------------------------");
+        }
+        for (Product product : Storage.getStorage()) {
+            if (product.getOwner() == null) {
+                Storage.showProductInConsole(product);
+                System.out.println("-------------------------");
+            }
+        }
+        System.out.println();
     //изучить
     }
 }

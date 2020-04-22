@@ -35,6 +35,7 @@ public class CommandListener {
                     continue;
                 case "remove_by_id":
                     Commands.removeById(integerCheck(readArgument(command)));
+                    continue;
                 case "clear":
                     Commands.clear();
                     continue;
@@ -85,7 +86,12 @@ public class CommandListener {
         String answer = "";
         int elementNumberInTheArray = 0;
         char[] commandToCharArray = command.toCharArray();
-        while (commandToCharArray[elementNumberInTheArray] != ' ') elementNumberInTheArray +=1;
+        while (commandToCharArray[elementNumberInTheArray] != ' ') {
+            if (elementNumberInTheArray + 2 > commandToCharArray.length) {
+                return null;
+            }
+            elementNumberInTheArray++;
+        }
         elementNumberInTheArray++;
         for (;elementNumberInTheArray != commandToCharArray.length; elementNumberInTheArray += 1) {
             answer += commandToCharArray[elementNumberInTheArray];

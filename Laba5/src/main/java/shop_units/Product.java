@@ -33,12 +33,16 @@ public class Product implements Comparable<Product>{
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("id", id);
         jsonObject.put("name", name);
-        jsonObject.put("coordinate", coordinates.toJSON());
+        jsonObject.put("coordinates", coordinates);
         jsonObject.put("creationDate", creationDate);
         jsonObject.put("price", price);
         jsonObject.put("manufactureCost", manufactureCost);
         jsonObject.put("unitOfMeasure", unitOfMeasure);
-        jsonObject.put("owner", owner.toJSON());
+        if (owner != null) {
+            jsonObject.put("owner", owner);
+        } else {
+            jsonObject.put("owner", null);
+        }
         return jsonObject;
     }
 

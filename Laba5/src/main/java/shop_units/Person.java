@@ -11,16 +11,6 @@ public class Person implements Comparable<Person>{
     private double weight; //Значение поля должно быть больше 0
     private String passportID; //Значение этого поля должно быть уникальным, Поле может быть null
 
-
-    public JSONObject toJSON() {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("name", name);
-        jsonObject.put("birthday", birthday);
-        jsonObject.put("height", height);
-        jsonObject.put("weight", weight);
-        jsonObject.put("passportID", passportID);
-        return jsonObject;
-    }
     public String getName() {
         return name;
     }
