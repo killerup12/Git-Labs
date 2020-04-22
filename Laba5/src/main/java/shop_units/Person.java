@@ -1,7 +1,5 @@
 package shop_units;
 
-import com.alibaba.fastjson.JSONObject;
-
 import java.time.LocalDate;
 
 public class Person implements Comparable<Person>{
@@ -11,7 +9,7 @@ public class Person implements Comparable<Person>{
     private double weight; //Значение поля должно быть больше 0
     private String passportID; //Значение этого поля должно быть уникальным, Поле может быть null
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
@@ -19,7 +17,7 @@ public class Person implements Comparable<Person>{
         this.name = name;
     }
 
-    public java.time.LocalDate getBirthday() {
+     java.time.LocalDate getBirthday() {
         return birthday;
     }
 
@@ -27,7 +25,7 @@ public class Person implements Comparable<Person>{
         this.birthday = birthday;
     }
 
-    public Float getHeight() {
+    Float getHeight() {
         return height;
     }
 
@@ -35,7 +33,7 @@ public class Person implements Comparable<Person>{
        this.height = height;
     }
 
-    public double getWeight() {
+    double getWeight() {
         return weight;
     }
 
@@ -43,7 +41,7 @@ public class Person implements Comparable<Person>{
         this.weight = weight;
     }
 
-    public String getPassportID() {
+    String getPassportID() {
         return passportID;
     }
 

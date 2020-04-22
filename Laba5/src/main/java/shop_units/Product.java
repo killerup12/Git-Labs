@@ -9,19 +9,17 @@ import java.time.ZonedDateTime;
 public class Product implements Comparable<Product>{
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
-    private Coordinates coordinates; //Пол не может быть nullе
+    private Coordinates coordinates; //Пол не может быть null
     private ZonedDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private Long price; //Поле может быть null, Значение поля должно быть больше 0
     private Integer manufactureCost; //Поле может быть null
     private UnitOfMeasure unitOfMeasure; //Поле не может быть null
     private Person owner; //Поле может быть null
 
-    private static Integer antiRepetitionId = 0;
-
     public Product() {
         coordinates = new Coordinates();
         owner = new Person();
-        //todo костыль. Испровить!
+        //костыль. Испровить!
     }
 
     /**
@@ -62,7 +60,7 @@ public class Product implements Comparable<Product>{
         this.name = name;
     }
 
-    public Coordinates getCoordinates() {
+    Coordinates getCoordinates() {
         return coordinates;
     }
 
@@ -70,7 +68,7 @@ public class Product implements Comparable<Product>{
         this.coordinates = coordinates;
     }
 
-    public ZonedDateTime getCreationDate() {
+    ZonedDateTime getCreationDate() {
         return creationDate;
     }
 
@@ -86,7 +84,7 @@ public class Product implements Comparable<Product>{
         this.price = price;
     }
 
-    public Integer getManufactureCost() {
+    Integer getManufactureCost() {
         return manufactureCost;
     }
 
@@ -108,11 +106,6 @@ public class Product implements Comparable<Product>{
 
     public void setOwner(Person owner) {
         this.owner = owner;
-    }
-
-
-    private void initCreationDate() {
-        creationDate = java.time.ZonedDateTime.now();
     }
 
     //Сравнение продуктов происходит по цене

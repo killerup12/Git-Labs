@@ -1,6 +1,5 @@
 package tools;
 
-import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -12,7 +11,7 @@ import java.util.Scanner;
  * а так же считывать их
  */
 public class TextReader {
-    public static Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
 
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
@@ -32,11 +31,6 @@ public class TextReader {
                 scanner = new Scanner(System.in);
             }
         }
-    }
-
-    public static String readText(InputStream stream) {
-        return null;
-        //todo
     }
 
     /**
@@ -151,7 +145,7 @@ public class TextReader {
      * @return возвращает true, если ответ да и наоборот
      */
     public static boolean readYesOrNo() {
-        String answer = null;
+        String answer;
         while (true) {
             answer = readText();
             if (answer == null) {

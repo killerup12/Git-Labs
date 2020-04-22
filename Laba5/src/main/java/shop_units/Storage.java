@@ -1,8 +1,8 @@
 package shop_units;
 
+import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import tools.FileWorker;
-import tools.TextReader;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,7 +10,6 @@ import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
-import java.util.Scanner;
 
 /**
  * Храилище, где будут содержаться коллекции.
@@ -21,7 +20,6 @@ public class Storage {
     private static File collectionFile;
 
     public static File getCollectionFile() { return collectionFile; }
-    public static void setCollectionFile(File collectionFile) { Storage.collectionFile = collectionFile; }
     public static LinkedHashSet<Product> getStorage() { return storage; }
     public static LocalDate getInitializationDate() { return initializationDate; }
 
@@ -33,7 +31,6 @@ public class Storage {
      */
     public static boolean initCollectionFromFile (File file) {
         try {
-            Scanner scanner = new Scanner(file);
             Product[] arrayProduct;
             arrayProduct = JSONObject.parseObject(FileWorker.read(file), (Type) Product[].class);
             storage.addAll(Arrays.asList(arrayProduct));
@@ -42,11 +39,16 @@ public class Storage {
                     product.setOwner(null);
                 }
             }
+            collectionFile = file;
             return true;
+
         } catch (FileNotFoundException ignored) {
+            System.out.println("File not found!");
+            return false;
+        } catch (JSONException e) {
+            System.out.println("The file is not in json format!");
             return false;
         }
-        //todo
     }
 
     /**

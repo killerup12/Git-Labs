@@ -1,7 +1,5 @@
 package tools;
 
-import com.alibaba.fastjson.JSONObject;
-
 public class Coordinates {
     private long x; //Значение поля должно быть больше -622
     private long y; //Максимальное значение поля: 625

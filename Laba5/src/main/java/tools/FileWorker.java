@@ -1,5 +1,6 @@
 package tools;
 
+import console.CommandListener;
 import shop_units.Storage;
 
 import java.io.File;
@@ -9,6 +10,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class FileWorker {
+    static CommandListener commandListener = new CommandListener();
 
     /**
      * Метод проверяет, возможно ли достать данные
@@ -16,7 +18,7 @@ public class FileWorker {
      * @param file файл, который будет проходить проверку
      * @return возможно ли произвести считывание данных
      */
-    public static boolean isReachable(File file) {
+    private static boolean isReachable(File file) {
         boolean success = true;
 
         if (!file.exists()) {
@@ -35,14 +37,14 @@ public class FileWorker {
     /**
      * В данном методе будет проиходить проверка
      * корректности введенного файла
-     * @param arg название файла
+     * @param thePathToTheFile название/путь к файлу
      * @return файл, который был найден
      */
-    public static File enterFile(String arg) {
+    public static File enterFile(String thePathToTheFile) {
         File file;
 
-        if (arg != null) {
-            file = new File(arg);
+        if (thePathToTheFile != null) {
+            file = new File(thePathToTheFile);
             if (isReachable(file)) {
                 return file;
             }
@@ -70,15 +72,6 @@ public class FileWorker {
      * @throws FileNotFoundException когда
      * файл не найден
      */
-    public static String read() throws FileNotFoundException {
-        Scanner scanner = new Scanner(Storage.getCollectionFile());
-
-        String result = "";
-        while (scanner.hasNextLine()) {
-            result += scanner.nextLine();
-        }
-        return result;
-    }
     public static String read(File file) throws FileNotFoundException {
         Scanner scanner = new Scanner(file);
 
@@ -97,6 +90,31 @@ public class FileWorker {
     public static void write(String obj) throws IOException {
         try (FileWriter fw = new FileWriter(Storage.getCollectionFile())) {
             fw.write(obj);
+        }
+    }
+
+    public static void readCommandsFromFile(String thePathToTheFile) throws FileNotFoundException {
+        File file;
+
+        if (thePathToTheFile != null) {
+            file = new File(thePathToTheFile);
+            if (isReachable(file)) {
+                String command = "";
+                Scanner scanner = new Scanner(file);
+
+                //может быть исключение
+                while (scanner.hasNext()) {
+                        command = scanner.nextLine();
+                        if (command.equals("execute_script "+thePathToTheFile)){
+                            continue;
+                        }
+                        commandListener.executeCommand(command);
+                }
+            } else {
+                return;
+            }
+        } else {
+            return;
         }
     }
 }

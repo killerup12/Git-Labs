@@ -6,6 +6,8 @@ import shop_units.Product;
 import shop_units.Storage;
 import tools.FileWorker;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -144,8 +146,12 @@ class Commands {
      * В скрипте содержатся команды в таком же виде,
      * в котором их вводит пользователь в интерактивном режиме
      */
-    static void executeScript() {
-        //todo
+    static void executeScript(String thePathToTheFile) {
+        try {
+            FileWorker.readCommandsFromFile(thePathToTheFile);
+        } catch (FileNotFoundException e) {
+            System.out.println("Пошел в кино! path to the file was entered wrong!");
+        }
     }
 
     /**

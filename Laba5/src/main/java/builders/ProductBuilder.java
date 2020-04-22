@@ -53,7 +53,6 @@ public class ProductBuilder {
             product.setOwner(null);
         }
         System.out.println("Product was build!");
-        System.out.println();
     }
 
     private static void assignId(Product product) {
