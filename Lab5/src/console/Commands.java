@@ -154,7 +154,7 @@ class Commands {
         try {
             FileWorker.readCommandsFromFile(thePathToTheFile);
         } catch (FileNotFoundException e) {
-            System.out.println("Пошел в кино! path to the file was entered wrong!");
+            System.out.println("Path to the file was entered wrong!");
         }
     }
 

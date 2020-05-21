@@ -1,0 +1,1 @@
+execute_script /Users/killerup12/Desktop/ITMO_University_Activities/Программирование/Лабораторная работа №5/scripts/texе2.txt

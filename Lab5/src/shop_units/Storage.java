@@ -29,7 +29,7 @@ public class Storage {
      *             информацию для записи
      * @return успешно ли проинициализирован
      */
-    public static boolean initCollectionFromFile (File file) {
+    public static boolean initCollectionFromFile(File file) {
         try {
             Product[] arrayProduct;
             arrayProduct = JSONObject.parseObject(FileWorker.read(file), (Type) Product[].class);
@@ -49,8 +49,10 @@ public class Storage {
             System.out.println("The file is not in json format!");
             return false;
         } catch (NullPointerException e) {
-            System.out.println("File not for reading text!");
+//            System.out.println("File not for reading text!");
+            collectionFile = file;  //костыль
             return false;
+            //todo
         }
     }
 

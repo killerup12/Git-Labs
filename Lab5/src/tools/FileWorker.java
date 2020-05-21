@@ -97,7 +97,7 @@ public class FileWorker {
         try {
             if (thePathToTheFile != null) {
                 file = new File(thePathToTheFile);
-                if (isReachable(file)) {
+                if (file.canRead()) {
                     String command = "";
                     TextReader.setStream(new FileInputStream(file));
                     TextReader.setScannerisIn(false);
