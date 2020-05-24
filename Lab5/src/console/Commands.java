@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import shop_units.Product;
 import shop_units.Storage;
 import tools.FileWorker;
+import tools.TextReader;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 /**
  * В этом классе содержатся все кончольные команды.
  */
-class Commands {
+public class Commands {
     /**
      * Вывести справку по доступным командам
      */
@@ -113,6 +114,7 @@ class Commands {
         Storage.getStorage().remove(Storage.searchProductById(id));
         System.out.println("Operation completed!");
         System.out.println();
+        System.out.println();
     }
 
     /**
@@ -145,17 +147,26 @@ class Commands {
         }
     }
 
+    public static int numberOfExecuteScript = 0;
     /**
      * Считать и исполнить скрипт из указанного файла.
      * В скрипте содержатся команды в таком же виде,
      * в котором их вводит пользователь в интерактивном режиме
      */
-    static void executeScript(String thePathToTheFile) {
-        try {
-            FileWorker.readCommandsFromFile(thePathToTheFile);
-        } catch (FileNotFoundException e) {
-            System.out.println("Path to the file was entered wrong!");
-        }
+     public static void executeScript(String thePathToTheFile) {
+         numberOfExecuteScript++;
+         try {
+             FileWorker.readCommandsFromFile(thePathToTheFile);
+         } catch (FileNotFoundException e) {
+             System.out.println("Path to the file was entered wrong!");
+         } finally {
+             numberOfExecuteScript--;
+         }
+
+         if (numberOfExecuteScript == 0) {
+             TextReader.setStream(System.in);
+             TextReader.setScannerisIn(true);
+         }
     }
 
     /**
@@ -279,16 +290,16 @@ class Commands {
         }
         if (arrayProduct.size() > 1) {
              arrayProduct.stream().sorted((product1, product2) -> product2.getOwner().compareTo(product1.getOwner()))
-                    .forEachOrdered(Storage::showProductInConsole);
+                    .forEachOrdered(Storage::showOwnerInConsole);
             //изучить
             System.out.println("-------------------------");
-        } else {
-            Storage.showProductInConsole(arrayProduct.get(0));
+        } else if (arrayProduct.size() == 1) {
+            Storage.showOwnerInConsole(arrayProduct.get(0));
             System.out.println("-------------------------");
         }
         for (Product product : Storage.getStorage()) {
             if (product.getOwner() == null) {
-                Storage.showProductInConsole(product);
+                Storage.showOwnerInConsole(product);
                 System.out.println("-------------------------");
             }
         }

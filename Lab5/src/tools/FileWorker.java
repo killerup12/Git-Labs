@@ -1,13 +1,18 @@
 package tools;
 
 import console.CommandListener;
+import console.Commands;
 import shop_units.Storage;
 
+import javax.xml.soap.Text;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.Scanner;
 
 public class FileWorker {
-    static CommandListener commandListener = new CommandListener();
+    private static CommandListener commandListener = new CommandListener();
+    private static LinkedHashSet<String> executeScripts = new LinkedHashSet<>();
 
     /**
      * Метод проверяет, возможно ли достать данные
@@ -92,6 +97,7 @@ public class FileWorker {
     }
 
     public static void readCommandsFromFile(String thePathToTheFile) throws FileNotFoundException {
+        Scanner previousScanner = TextReader.getScanner();
         File file;
 
         try {
@@ -105,21 +111,44 @@ public class FileWorker {
                     Scanner scanner = TextReader.getScanner();
                     //может быть исключение
                     while (scanner.hasNext()) {
+                        boolean success = true;
                         command = TextReader.readText();
 
-                        commandListener.executeCommand(command);
+                        if (command == null) {
+                            commandListener.executeCommand(null);
+                        }
+                        else if (commandListener.readCommand(command).equals("execute_script")){
+                            if (!(executeScripts.isEmpty())) {
+                                for (String executeScript : executeScripts) {
+                                    if (executeScript.equals(command)) {
+                                        success = false;
+                                    }
+                                }
+                            }
+                            executeScripts.add(command);
+                            if (success) {
+                                executeScripts.add(command);
+                                Scanner scanner1 = TextReader.getScanner();
+                                Commands.executeScript(commandListener.readArgument(command));
+                                TextReader.setScanner(scanner1);
+                                executeScripts.remove(command);
+                            } else {
+                                System.out.println("***");
+                                System.out.println("Command \"" + command + "\" was ignored because it could cause recursion!");
+                                System.out.println("***");
+                            }
+                        } else {
+                            commandListener.executeCommand(command);
+                        }
                     }
-                } else {
-                    return;
                 }
-            } else {
-                return;
             }
         } catch (StackOverflowError e) {
             System.out.println("Recursion detected!");
         } finally {
-            TextReader.setStream(System.in);
-            TextReader.setScannerisIn(true);
+            TextReader.setScanner(previousScanner);
         }
     }
 }
+// execute_script /Users/killerup12/Desktop/ITMO_University_Activities/Программирование/Лабораторная работа №5/scripts/text.txt
+//print_field_descending_owner

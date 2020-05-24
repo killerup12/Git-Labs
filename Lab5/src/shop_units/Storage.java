@@ -51,7 +51,7 @@ public class Storage {
         } catch (NullPointerException e) {
 //            System.out.println("File not for reading text!");
             collectionFile = file;  //костыль
-            return false;
+            return true;
             //todo
         }
     }
@@ -163,6 +163,54 @@ public class Storage {
             }
         } else {
             System.out.println("Owner: -");
+        }
+    }
+
+    public static void showOwnerInConsole(Product product) {
+        if (product.getOwner() != null) {
+            System.out.println("Name: " + product.getOwner().getName());
+            if (product.getOwner().getBirthday() != null) {
+                System.out.println("Birthday: " + product.getOwner().getBirthday().toString());
+            } else {
+                System.out.println("Birthday: -");
+            }
+            if (product.getOwner().getHeight() != null) {
+                System.out.println("Height: " + product.getOwner().getHeight());
+            } else {
+                System.out.println("Height: -");
+            }
+            System.out.println("Weight: " + product.getOwner().getWeight());
+            if (product.getOwner().getPassportID() != null) {
+                System.out.println("Passport ID: " + product.getOwner().getPassportID());
+            } else {
+                System.out.println("Passport ID: -");
+            }
+        } else {
+            System.out.println("Owner is null");
+        }
+    }
+
+    public static void showOwnerInConsole(Person owner) {
+        if (owner != null) {
+            System.out.println("Name: " + owner.getName());
+            if (owner.getBirthday() != null) {
+                System.out.println("Birthday: " + owner.getBirthday().toString());
+            } else {
+                System.out.println("Birthday: -");
+            }
+            if (owner.getHeight() != null) {
+                System.out.println("Height: " + owner.getHeight());
+            } else {
+                System.out.println("Height: -");
+            }
+            System.out.println("Weight: " + owner.getWeight());
+            if (owner.getPassportID() != null) {
+                System.out.println("Passport ID: " + owner.getPassportID());
+            } else {
+                System.out.println("Passport ID: -");
+            }
+        } else {
+            System.out.println("Owner is null");
         }
     }
 }

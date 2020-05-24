@@ -18,6 +18,9 @@ public class TextReader {
     public static Scanner getScanner() {
         return scanner;
     }
+    public static void setScanner(Scanner scanner) {
+        TextReader.scanner = scanner;
+    }
     public static void setStream(InputStream inputStream) {
         scanner = new Scanner(inputStream);
     }
@@ -31,10 +34,11 @@ public class TextReader {
         String text;
         while (true) {
             try {
-                if (!scannerIsIn) {
-                    System.out.print(">");
-                }
+                System.out.print(">");
                 text = scanner.nextLine();
+                if (!scannerIsIn) {
+                    System.out.println(text);
+                }
                 if (text.equals("")) {
                     return null;
                 }

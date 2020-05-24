@@ -16,6 +16,10 @@ public class CommandListener {
     }
 
     public boolean executeCommand(String command) {
+        if (command == null) {
+            System.out.println("No command!");
+            return false;
+        }
         switch (readCommand(command)) {
             case "help":
                 Commands.help();
@@ -80,17 +84,22 @@ public class CommandListener {
         return command;
     }
 
-    private String readCommand (String command){
+    public String readCommand (String command){
         String answer = "";
-        char[] commandToCharArray = command.toCharArray();
-        for (int elementNumberInTheArray = 0;
-             elementNumberInTheArray < commandToCharArray.length && commandToCharArray[elementNumberInTheArray] != ' ';
-             elementNumberInTheArray++) {
-            answer += commandToCharArray[elementNumberInTheArray];
+        try {
+            char[] commandToCharArray = command.toCharArray();
+            for (int elementNumberInTheArray = 0;
+                 elementNumberInTheArray < commandToCharArray.length && commandToCharArray[elementNumberInTheArray] != ' ';
+                 elementNumberInTheArray++) {
+                answer += commandToCharArray[elementNumberInTheArray];
+            }
+            return answer;
+        } catch (NullPointerException e) {
+            return null;
         }
-        return answer;
+
     }
-    private String readArgument (String command){
+    public String readArgument (String command){
         String answer = "";
         int elementNumberInTheArray = 0;
         char[] commandToCharArray = command.toCharArray();
