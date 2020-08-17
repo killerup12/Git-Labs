@@ -29,6 +29,7 @@ public class Execute_script extends AbstractCommand {
 
     @Override
     public String execute(LinkedHashSet<Product> collection) {
+
         return null;
     }
 }

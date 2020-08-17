@@ -14,6 +14,14 @@ import java.util.Scanner;
 public class TextReader {
     private static boolean scannerIsIn = true;
     private static Scanner scanner = new Scanner(System.in);
+    private static int scriptsCount = 0;
+
+    public static int getScriptsCount() {
+        return scriptsCount;
+    }
+    public static void setScriptsCount(int scriptsCount) {
+        TextReader.scriptsCount = scriptsCount;
+    }
 
     public static Scanner getScanner() {
         return scanner;
@@ -27,8 +35,12 @@ public class TextReader {
     public static void setStream(Scanner scanner) {
         TextReader.scanner = scanner;
     }
-    public static void setScannerisIn(boolean scannerIsIn) {
+
+    public static void setScannerIsIn(boolean scannerIsIn) {
         TextReader.scannerIsIn = scannerIsIn;
+    }
+    public static boolean getScannerIsIn() {
+        return scannerIsIn;
     }
 
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");

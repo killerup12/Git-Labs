@@ -3,6 +3,7 @@ package tools;
 import Exeptions_shit.ServerIsBusyException;
 import commands.AbstractCommand;
 import commands.IsConnected;
+import commands.KostilCommand;
 import console.CommandListener;
 
 import java.io.*;
@@ -34,12 +35,8 @@ public class ClientServerInteraction {
 
         return byteOut.toByteArray();
     }
-
-    public static void sendAMessage() throws IOException {
-        channel.write(ByteBuffer.wrap(serialize(new IsConnected())));
-    }
     //todo тут проблема
-    private static String readMessage(SocketChannel in) {
+    public static String readMessage(SocketChannel in) {
         ByteBuffer buffer = ByteBuffer.allocate(40 * 1024);
 
         try (ByteArrayOutputStream byteOutput = new ByteArrayOutputStream()) {
@@ -93,7 +90,7 @@ public class ClientServerInteraction {
 //                }
 //                System.out.println();
 //            }
-        //todo delite
+        //todo delete
 
     }
 
@@ -105,8 +102,13 @@ public class ClientServerInteraction {
 //        socketChannel.register(selector, SelectionKey.OP_CONNECT);
 //        socketChannel.connect(new InetSocketAddress("localhost", 8000));
         establishConnection();
+
         while (true) {
-            int readyChannels = selector.select();
+            int readyChannels = selector.select(1000);
+            if (readyChannels == 0) {   //костыль года
+                socketChannel.write(ByteBuffer.wrap(serialize(new KostilCommand())));
+                readyChannels = selector.select(1000);
+            }
             if (readyChannels == 0) {
                 throw new ServerIsBusyException();
             }
@@ -185,7 +187,6 @@ public class ClientServerInteraction {
                         System.exit(0);
                     } else if (command.getName().equals("execute_script")) {
                         FileWorker.executeScript(currentKey, command.getArgument());
-                        Thread.sleep(1100);
                     } else {
                         ((SocketChannel) currentKey.channel()).write(ByteBuffer.wrap(serialize(command)));
                     }

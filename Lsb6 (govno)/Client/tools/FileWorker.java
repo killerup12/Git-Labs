@@ -8,7 +8,10 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 import java.util.LinkedHashSet;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
+
+import static tools.ClientServerInteraction.readMessage;
 
 public class FileWorker {
     private static CommandListener commandListener = new CommandListener();
@@ -44,36 +47,28 @@ public class FileWorker {
         File file;
 
         if (pathToFile != null) {
-            file = new File(pathToFile);
+            file = new File(pathToFile); //todo ?
 
             if (file.canRead()) {
-                String executeScriptCommand;
                 TextReader.setStream(new FileInputStream(file));
-                TextReader.setScannerisIn(false);
+                TextReader.setScannerIsIn(false);
 
                 Scanner scanner = TextReader.getScanner();
-                boolean success = true;
-                for (String commandArg : executeScripts) {
-                    if (pathToFile.equals(commandArg)) {
-                        success = false;
-                    }
+                boolean success = false;
+
+                try {
+                    executeScripts.stream().filter(path -> path.equals(pathToFile)).findAny().get();
+                } catch (NoSuchElementException e) {
+                    success = true;
                 }
                 if (success) {
+                    executeScripts.add(pathToFile);
                     while (scanner.hasNext()) {
-                        executeScripts.add(pathToFile);
                         AbstractCommand command = commandListener.readCommand();
                         if (command.getName().equals("execute_script")) {
                             executeScript(currentKey, command.getArgument());
                         } else {
                             ((SocketChannel) currentKey.channel()).write(ByteBuffer.wrap(ClientServerInteraction.serialize(command)));
-                        }
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        } finally {
-                            executeScripts.add(pathToFile);
-                            currentKey.interestOps(SelectionKey.OP_READ);
                         }
                     }
                 } else {
@@ -82,7 +77,10 @@ public class FileWorker {
                     System.out.println("***");
                 }
                 TextReader.setScanner(previousScanner);
-                TextReader.setScannerisIn(true);
+                executeScripts.remove(pathToFile);
+                if (executeScripts.isEmpty()) {
+                    TextReader.setScannerIsIn(true);
+                }
             }
         }
     }

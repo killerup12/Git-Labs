@@ -20,7 +20,7 @@ public class Client {
                 System.out.println();
             } catch (ServerIsBusyException e) {
                 System.out.println("Server is busy now!");
-                System.out.println("C   losing application...");
+                System.out.println("Closing application...");
                 System.exit(0);
             }
         }
@@ -30,4 +30,6 @@ public class Client {
 execute_script /Users/killerup12/Desktop/ITMO_University_Activities/Программирование/Лабораторная работа №6/text.txt
 
 execute_script /Users/killerup12/Desktop/ITMO_University_Activities/Программирование/Лабораторная работа №6/text — копия.txt
+
+execute_script /Users/killerup12/Desktop/ITMO_University_Activities/Программирование/Лабораторная работа №6/text — копия 2.txt
  */
